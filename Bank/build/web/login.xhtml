@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <style>
+            body {
+                padding:0;
+                margin:0;
+                font-family: arial;
+            }
+            .container {
+                display:flex;
+                height: 100vh;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                background: whitesmoke;
+            }
+            .card {
+                height: 57vh;
+                color:grey;
+                font-size:.9em;
+                width: 50vh;
+                background: white;
+                border-radius: 1.5rem;
+                box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
+            }
+            .image {
+                height: 12vh;
+                padding-top: 5vh;  
+                padding-right: .9rem
+            }
+            .inputs {
+                height:22vh;
+                padding-top:5vh;
+            }
+            .inputs input {
+                width: 65%;
+                border:none;
+                border-radius: .6rem;
+                background:whitesmoke;
+                padding:.5rem;
+                margin-top:.3rem;
+                box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.2), 0 2px 1px 0 rgba(0, 0, 0, 0.19);
+                color:#ea8a00;
+                padding-left: .7rem
+            }
+            .loginbutton {
+                width: 45%;
+                border:none;
+                border-radius: .8rem;
+                background:#ea8a00;
+                padding:.7rem;
+                color:white;
+                margin-bottom:1.5vh;
+                cursor: pointer;
+                box-shadow: 0 0px 1px 0 #CC8B00, 0 5px 1px 0 #CC8B00;
+            }
+            .loginbutton:hover {
+                box-shadow: 0 0px 1px 0 #CC8B00, 0 3px 1px 0 #CC8B00;
+            }
+            .change {
+                border:none;
+                background: white;
+                cursor: pointer;
+                color:#ea8a00;
+            }
+            .change:hover {
+                text-decoration: underline;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div class="card">
+                <div class="image">
+                    <img src="LOGO.png" height="70"/>
+                </div>
+                <h:form>
+                <div class="inputs">
+                    <h:outputText value="T.C No"/>
+                    <br/>
+                    <h:inputText id="tckn" value="#{Login.tckn}"/>
+                    <br/>
+                    <br/>
+
+                    <h:outputText value="Şifre"/>
+                    <br/>
+                    <h:inputSecret id="password" value="#{Login.password}"/>
+                </div>
+                <div class="buttons">
+                    <h:commandButton class="loginbutton" value="Giriş Yap" action="#{Login.asd()}"/>
+                </div>
+                </h:form>                
+            </div>
+        </div>
+    </h:body>
+</html>
+

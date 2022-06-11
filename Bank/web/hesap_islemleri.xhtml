@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Anasayfa</title>
+        <link rel="stylesheet" href="navbar_style.css"/>
+        
+        <style>
+            .content {
+                padding-left: 2rem;
+                padding-right: 2rem;
+                align-items: center;
+                padding-top: 1vh;
+                margin-bottom: 0;
+            }
+            .content2 {
+                
+            }
+            .hesaplarDiv {
+                
+                background: whitesmoke;
+                border-radius: 1rem;
+                box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
+                margin-top:1rem;
+                display: grid;
+                padding:3vh;
+            }
+            .content3 {
+                width:30rem;
+                float:left;
+            }
+            .islem {
+                margin-top:1rem;
+                background: whitesmoke;
+                border-radius: 1rem;
+                height:50vh;
+                width:20rem;
+                float:right;
+                display:flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+            .innerislem {
+                padding-top:4rem;
+                padding-left: 3rem;
+                padding-right: 3rem;
+                padding-bottom: 4rem;
+                background:white;
+                border-radius:.8rem
+                
+            }
+            .hesap {
+                padding-top: 3vh;
+                padding-left:1.5rem;
+                padding-right:1.5rem;
+                background:white;
+                border-radius:.8rem
+            }
+            .button {
+                width: 30%;
+                height:2rem;
+                border:none;
+                border-radius: .8rem;
+                background:#ea8a00;
+                color:white;
+                margin-bottom:1.5vh;
+                cursor: pointer;
+                box-shadow: 0 0px 1px 0 #CC8B00, 0 4px 1px 0 #CC8B00;
+            }
+            .button:hover {
+                box-shadow: 0 0px 1px 0 #CC8B00, 0 2px 1px 0 #CC8B00;
+            }
+            .input {
+                width: 9rem;
+                margin-right: .5rem;
+                border:none;
+                border-radius: .6rem;
+                background:white;
+                padding:.3rem;
+                margin-top:.3rem;
+                box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.2), 0 2px 1px 0 rgba(0, 0, 0, 0.19);
+                color:#ea8a00;
+                padding-left: .7rem
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div class="navContainer">
+                <div class="imageClass">
+                <a href="anasayfa.xhtml"><img src="LOGO.png" height="100"/></a>
+                    
+                </div>
+                <div class="navbar">
+                    <ul>
+                        <li><a href="para_transferi.xhtml">Para Transferi</a></li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0)" class="dropbtn">Kredi</a>
+                            <div class="dropdown-content">
+                                <a href="credit.xhtml">Kredi Çek</a>
+                                <a href="paycredit.xhtml">Kredi Öde</a>
+                            </div>
+                        </li>
+                        <li><a href="deposit.xhtml">Mevduat</a></li>
+                        <li><a href="hesap_islemleri.xhtml">Hesap İşlemleri</a></li>
+                        <li style="float:right"><a href="login.xhtml">Çıkış</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content" style="color:grey; text-align: center">
+                <h2>Hesaplarım</h2>
+                <div class="content2">
+                    <div class="content3">
+                        <c:forEach var="item" items="#{HesapKayitCek.Hesaplarim()}">
+                        <div class="hesaplarDiv">
+                            <div class="hesap" >
+                                <div style="width:100%; height:3.5vh;">
+                                        <span class="vade" style="float:left;">
+                                            Vadesiz #{item.get("money")}
+                                        </span>
+                                        <span class="bakiye" style="float:right; color:#ea8a00;">
+                                            #{item.get("budget")} #{item.get("money")}
+                                        </span>
+                                    </div>
+                                    <div class="iban" style=" float:left; height:4vh;">
+                                        #{item.get("iban")}
+                                    </div>
+                            </div>
+                        </div>
+                        </c:forEach>
+                    </div>
+                <div class="islem">
+                    <div class="innerislem">
+                    <h:form>
+                        <h:outputText value="Yatırılacak Tutar" />
+                        <br/>
+                        <h:inputText  class="input" id="cekilenkredi" value="#{ParaYatir.paramiktari}"></h:inputText>
+
+                        <br/>
+
+                        <br></br><br></br>
+                        <h:outputText value="Yatırmak istediğiniz hesap" />
+                        <br></br>
+
+                        <h:selectOneRadio value = "#{ParaYatir.paraturu}">
+                    <f:selectItem itemValue = "TL" itemLabel = "TL" />
+                    <f:selectItem itemValue = "USD" itemLabel = "USD" />
+                    <f:selectItem itemValue = "EURO" itemLabel = "EURO" />
+
+                 </h:selectOneRadio>
+
+                        <br></br>
+                        <h:commandButton class="button" action="#{ParaYatir.yatir()}"
+                                value="Yatır"></h:commandButton>
+                </h:form>
+                        </div>
+                </div>
+                    </div>
+            </div>
+            
+            <div class="footer">
+                <p> Copyright © Sarı Papatyalar 2022. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </h:body>
+    
+</html>

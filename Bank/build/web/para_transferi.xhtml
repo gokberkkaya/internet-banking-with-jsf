@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Anasayfa</title>
+        <link rel="stylesheet" href="navbar_style.css"/>
+        
+        <style>
+            .content {
+                color:grey; 
+                display:grid; 
+                justify-content: center; 
+                ext-align: center;
+            }
+            .card{
+                background: whitesmoke;
+                width: 40rem;
+                height: 25vh;
+                border-radius: 1rem;
+                padding:1.5rem;
+                box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
+            }
+            .inner {
+                background:white;
+                border-radius: 1rem;
+                padding:1.5rem;
+                padding-top:1.8rem;
+                display: grid;
+                justify-content: center;
+                height:17.8vh;
+            }
+            .inner form{
+                text-align: center
+            }
+            .button {
+                width: 35%;
+                border:none;
+                border-radius: .8rem;
+                background:#ea8a00;
+                padding:.6rem;
+                color:white;
+                margin-bottom:1.5vh;
+                cursor: pointer;
+                box-shadow: 0 0px 1px 0 #CC8B00, 0 5px 1px 0 #CC8B00;
+            }
+            .button:hover {
+                box-shadow: 0 0px 1px 0 #CC8B00, 0 3px 1px 0 #CC8B00;
+            }
+            .input {
+                width: 13rem;
+                border:none;
+                border-radius: .6rem;
+                background:whitesmoke;
+                padding:.3rem;
+                margin-top:.3rem;
+                box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.2), 0 2px 1px 0 rgba(0, 0, 0, 0.19);
+                color:#ea8a00;
+                padding-left: .7rem;
+            }
+            .info {
+                display: grid;
+                align-items: end;
+                justify-content: center;
+                margin-bottom: 1.5rem;
+            }
+            .inner2 {
+                text-align: center
+            }
+            .inners {
+                display:grid;
+                grid-template-columns: 50% 50%;
+                width: 36rem;
+            }
+            .buttondiv {
+                display:flex;
+                justify-content: center;
+                align-items:flex-end
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div class="navContainer">
+                <div class="imageClass">
+                <a href="anasayfa.xhtml"><img src="LOGO.png" height="100"/></a>
+                    
+                </div>
+                <div class="navbar">
+                    <ul>
+                        <li><a href="para_transferi.xhtml">Para Transferi</a></li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0)" class="dropbtn">Kredi</a>
+                            <div class="dropdown-content">
+                                <a href="credit.xhtml">Kredi Çek</a>
+                                <a href="paycredit.xhtml">Kredi Öde</a>
+                            </div>
+                        </li>
+                        <li><a href="deposit.xhtml">Mevduat</a></li>
+                        <li><a href="hesap_islemleri.xhtml">Hesap İşlemleri</a></li>
+                        <li style="float:right"><a href="login.xhtml">Çıkış</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content">
+                <div class="info">
+                    <h2>IBAN'a Para Transferi</h2>
+                </div>
+                <div class="card">
+                    <h:form>
+                    <div class="inner">
+                        <div class="inners">
+                            <div class="inner2">
+                            <h:outputText value="Gönderilecek IBAN:" />
+                            <br/>
+                            <h:inputText class="input" id="iban" value="#{kod.iban}"></h:inputText>
+                             </div>
+                            <div class="inner2">
+                            <h:outputText value="Gönderilecek tutar:" />
+                            <br/>
+                            <h:inputText class="input" id="gtutar" value="#{kod.gtutar}"></h:inputText>
+                            </div>
+                        </div>
+                        <div class="buttondiv">
+                            <h:commandButton class="button" action="#{kod.isle()}"
+                                    value="Para Gönder"></h:commandButton>
+                        </div>
+
+                        
+                    </div>
+                        </h:form>
+                </div>
+            </div>
+            <div class="footer">
+                <p> Copyright © Sarı Papatyalar 2022. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </h:body>
+</html>
